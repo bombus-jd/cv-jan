@@ -1,0 +1,216 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- Packages
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,margin=16mm]{geometry}
+\usepackage{paracol}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\providecommand{\faCircle}{\large\textbullet} % fallback if FA5 fails
+
+% --- Colors
+\definecolor{sidebar}{HTML}{0F6C74}   % nice petrol for sidebar
+\definecolor{textgray}{gray}{0.15}
+\definecolor{cvgreen}{HTML}{2BAF6A}   % accent green for dots
+
+% --- Sidebar background (width MUST match \columnratio left part)
+\AddToShipoutPictureBG{%
+  \AtPageLowerLeft{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[sidebar] (0,0) rectangle (\paperwidth*0.30,\paperheight);
+    \end{tikzpicture}%
+  }%
+}
+
+% --- Two-column setup (keep in sync with background above)
+\columnratio{0.30,0.70}
+\setlength{\columnsep}{4mm}
+
+% --- Links & lists
+\setlist[itemize]{itemsep=2pt, topsep=2pt, leftmargin=1.2em}
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+
+% --- Helpers
+\newcommand{\sidehead}[1]{\vspace{1ex}\textbf{\large #1}\par\vspace{0.4em}}
+\newcommand{\sectiontitle}[1]{\vspace{1.0em}\textbf{\large #1}\par\vspace{0.25em}\hrule\vspace{0.6em}}
+
+\newcommand{\cventry}[3]{%
+  \noindent
+  \begin{tabularx}{\linewidth}{@{}p{28mm}X@{}}
+    \raggedright\small\textsf{#1} & \textbf{#2} \\
+  \end{tabularx}
+  \vspace{0.2em}
+  #3
+  \vspace{0.8em}
+}
+
+% ---------- Dots helper (no extra spaces)
+\makeatletter
+\newcommand{\reptoken}[2]{%
+  \begingroup\@tempcnta=0\relax
+  \loop\ifnum\@tempcnta<#1 #2\advance\@tempcnta by1\relax\repeat
+  \endgroup}
+% \pictofraction{icon}{colA}{nA}{colB}{nB}{size}
+\newcommand{\pictofraction}[6]{%
+  {\begingroup #6%
+    \reptoken{#3}{\textcolor{#2}{#1}}%
+    \reptoken{#5}{\textcolor{#4}{#1}}%
+  \endgroup}}
+\makeatother
+
+% ---------- Row macros (clean and consistent)
+% Skills with dots only:
+\newcommand{\skillrow}[3]{% name, full, empty
+  \textbf{#1} & \pictofraction{\faCircle}{cvgreen}{#2}{black!30}{#3}{\tiny} \\}
+% Languages with level + dots OR comment ("Muttersprache"):
+\newcommand{\langrow}[2]{\textbf{#1} & #2\\}
+% --- Keep header aligned with photo
+\newlength{\photoH}
+\setlength{\photoH}{45mm}
+
+\begin{document}
+\pagestyle{empty}
+\small
+\color{textgray}
+
+\begin{paracol}{2}
+
+% ===== LEFT COLUMN =====
+\color{white}\raggedright\normalsize
+
+% Photo (stays inside the column)
+\begin{minipage}[t][\photoH][t]{\linewidth}
+  \includegraphics[height=\photoH,width=\linewidth,keepaspectratio]{cv_test.jpeg}
+\end{minipage}
+
+\vspace{\stretch{1}}
+
+\sidehead{\underline{EDV-Kenntnisse}}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}l >{\raggedright\arraybackslash}X@{}}
+  \skillrow{Python}{2}{3}
+  \skillrow{R}{3}{2}
+  \skillrow{Git}{2}{3}
+  \skillrow{Excel}{3}{2}
+\end{tabularx}
+
+\vspace{\stretch{1}}
+
+\sidehead{\underline{Sprachen}}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}l >{\centering\arraybackslash}p{12mm}@{}}
+  \langrow{Deutsch}{C2}
+  \langrow{Englisch}{C1}
+  \langrow{Spanisch}{B1}
+  \langrow{Französisch}{A2}
+\end{tabularx}
+
+\vspace{\stretch{1}}
+
+\sidehead{\underline{Interessen}}
+\begin{itemize}
+  \item Sport - Fußball
+  \item League of Legends
+  \item Hunde Training
+  \item Lieblingsserie: Psych
+  \end{itemize}
+
+\vfill
+
+% ===== RIGHT COLUMN =====
+\switchcolumn
+\raggedright\color{textgray}
+
+% Header block aligned with photo
+\parbox[b][\photoH][t]{\linewidth}{%
+  {\LARGE \textbf{Jan Dietz}}\par \vspace{5mm}
+  Schloßstr. 263, 45359 Essen \\
+  Mobil: +49 0157 88614038 \quad
+  Mail: \href{mailto:dietzjan6@gmail.com}{dietzjan6@gmail.com}\par
+  LinkedIn: \href{https://linkedin.com/in/jan-dietz-19051b338}{linkedin.com/in/jan-dietz-19051b338} \par
+  GitHub: \href{https://github.com/bombus-jd}{github.com/bombus-jd}
+}
+
+% --------- Beruflicher Werdegang ----------
+{\small
+\setlist[itemize]{itemsep=1pt, topsep=2pt, leftmargin=1.1em}
+
+\sectiontitle{Beruflicher Werdegang}
+
+\cventry{Seit 06/2023}{WHF, UDE Lehrstuhl Ökonometrie}{%
+\begin{itemize}
+  \item Konzeption und Implementierung von Übungs- und Prüfungsaufgaben in JACK3 (webbasierter Autograder) inkl. R-GReQL-Grammatik
+  \item Planung und Durchführung von Testläufen sowie Fehleranalyse und -behebung
+\end{itemize}}
+
+\cventry{Seit 06/2023}{WHF, UDE Lehrstuhl Mathematik}{%
+\begin{itemize}
+  \item Übungsleiter und Korrektor in Stochastik, Optimierung I sowie Analysis I \& II
+\end{itemize}}
+
+\cventry{08/2021 -- 10/2022}{Werkstudent, HSBC Deutschland, Düsseldorf}{%
+\textit{Bereich Transformation / Process Consulting}
+\begin{itemize}
+  \item Unterstützung des Testmanagements in HP ALM
+  \item User-Rechteverwaltung unter SAP IdM
+  \item Pflege von Confluence-Seiten
+\end{itemize}}
+} % end small
+
+
+% --------- Akademischer Werdegang ----------
+{\small
+\setlist[itemize]{itemsep=1pt, topsep=2pt, leftmargin=1.1em}
+
+\sectiontitle{Akademischer Werdegang}
+
+\cventry{01/2024 -- 06/2024}{ERASMUS, Sorbonne Université, Paris}{}
+
+\cventry{Seit 10/2023}{M.Sc. Mathematik, Universität Duisburg-Essen}{%
+\begin{itemize}
+  \item Schwerpunkte: Stochastik / Optimierung
+  \item Masterarbeit: Modellanalyse und Entwicklung zur Aktivität von Krebszellen nach Bestrahlung
+  \item Aktuelle Note: 1,3
+\end{itemize}}
+
+\cventry{04/2021 -- 09/2023}{B.Sc. Mathematik (2. Studium), UDE}{%
+\begin{itemize}
+  \item Schwerpunkt: Stochastik \quad|\quad Anwendungsfach: Wirtschaft
+  \item Leistungen: 100 ECTS (Note 1,9)
+\end{itemize}}
+
+\cventry{10/2019 -- 12/2022}{B.Sc. Physik, UDE}{%
+\begin{itemize}
+  \item Schwerpunkt: Komplexe Systeme
+  \item Bachelorarbeit: Untersuchung medizinischer Daten mit Korrelationsmethoden aus der Physik (1,0)
+  \item Gesamtnote: 1,7
+\end{itemize}}
+} % end small
+
+% --------- Sonstiges ----------
+{\small
+\setlist[itemize]{itemsep=1pt, topsep=2pt, leftmargin=1.1em}
+
+\sectiontitle{Sonstiges}
+
+\cventry{06/2021 -- 12/2022}{Studienbeirat der Fakultät Physik}{%
+}
+
+\cventry{06/2021 -- 08/2021}{Trainee, Act e.V., Essen}{%
+\textit{Studentische Unternehmensberatung der UDE}
+}
+} % end small
+
+
+
+\end{paracol}
+\end{document}
+
+

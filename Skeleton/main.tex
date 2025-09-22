@@ -1,0 +1,195 @@
+\documentclass[10pt,a4paper]{article}
+
+% --- Packages
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper,margin=16mm]{geometry}
+\usepackage{paracol}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\providecommand{\faCircle}{\large\textbullet} % fallback if FA5 fails
+
+% --- Colors
+\definecolor{sidebar}{HTML}{0F6C74}   % nice petrol for sidebar
+\definecolor{textgray}{gray}{0.15}
+\definecolor{cvgreen}{HTML}{2BAF6A}   % accent green for dots
+
+% --- Sidebar background (width MUST match \columnratio left part)
+\AddToShipoutPictureBG{%
+  \AtPageLowerLeft{%
+    \begin{tikzpicture}[remember picture,overlay]
+      \fill[sidebar] (0,0) rectangle (\paperwidth*0.30,\paperheight);
+    \end{tikzpicture}%
+  }%
+}
+
+% --- Two-column setup (keep in sync with background above)
+\columnratio{0.30,0.70}
+\setlength{\columnsep}{4mm}
+
+% --- Links & lists
+\setlist[itemize]{itemsep=2pt, topsep=2pt, leftmargin=1.2em}
+\hypersetup{colorlinks=true, urlcolor=black, linkcolor=black}
+
+% --- Helpers
+\newcommand{\sidehead}[1]{\vspace{1ex}\textbf{\large #1}\par\vspace{0.4em}}
+\newcommand{\sectiontitle}[1]{\vspace{1.0em}\textbf{\large #1}\par\vspace{0.25em}\hrule\vspace{0.6em}}
+
+\newcommand{\cventry}[3]{%
+  \noindent
+  \begin{tabularx}{\linewidth}{@{}p{28mm}X@{}}
+    \raggedright\small\textsf{#1} & \textbf{#2} \\
+  \end{tabularx}
+  \vspace{0.2em}
+  #3
+  \vspace{0.8em}
+}
+
+% ---------- Dots helper (no extra spaces)
+\makeatletter
+\newcommand{\reptoken}[2]{%
+  \begingroup\@tempcnta=0\relax
+  \loop\ifnum\@tempcnta<#1 #2\advance\@tempcnta by1\relax\repeat
+  \endgroup}
+% \pictofraction{icon}{colA}{nA}{colB}{nB}{size}
+\newcommand{\pictofraction}[6]{%
+  {\begingroup #6%
+    \reptoken{#3}{\textcolor{#2}{#1}}%
+    \reptoken{#5}{\textcolor{#4}{#1}}%
+  \endgroup}}
+\makeatother
+
+% ---------- Row macros (clean and consistent)
+% Skills with dots only:
+\newcommand{\skillrow}[3]{% name, full, empty
+  \textbf{#1} & \pictofraction{\faCircle}{cvgreen}{#2}{black!30}{#3}{\tiny} \\}
+% Languages with level + dots OR comment ("Muttersprache"):
+\newcommand{\langrow}[2]{\textbf{#1} & #2\\}
+% --- Keep header aligned with photo
+\newlength{\photoH}
+\setlength{\photoH}{45mm}
+
+\begin{document}
+\pagestyle{empty}
+\small
+\color{textgray}
+
+\begin{paracol}{2}
+
+% ===== LEFT COLUMN =====
+\color{white}\raggedright\normalsize
+
+% Photo (stays inside the column)
+\begin{minipage}[t][\photoH][t]{\linewidth}
+  \includegraphics[height=\photoH,width=\linewidth,keepaspectratio]{bombus.jpg}
+\end{minipage}
+
+\vspace{\stretch{1}}
+
+\sidehead{\underline{EDV-Kenntnisse}}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}l >{\raggedright\arraybackslash}X@{}}
+  \skillrow{Python}{5}{0}
+  \skillrow{R}{3}{2}
+  \skillrow{Git}{0}{5}
+\end{tabularx}
+
+\vspace{\stretch{1}}
+
+\sidehead{\underline{Sprachen}}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}l >{\centering\arraybackslash}p{12mm}@{}}
+  \langrow{Deutsch}{C2}
+  \langrow{Englisch}{C1}
+\end{tabularx}
+
+\vspace{\stretch{1}}
+
+\sidehead{\underline{Interessen}}
+\begin{itemize}
+  \item Sport
+ \end{itemize}
+
+\vfill
+
+% ===== RIGHT COLUMN =====
+\switchcolumn
+\raggedright\color{textgray}
+
+% Header block aligned with photo
+\parbox[b][\photoH][t]{\linewidth}{%
+  {\LARGE \textbf{Name}}\par \vspace{5mm}
+  Adresse, PLZ Stadt \\
+  Mobil: +49 XXXXXXXXX \quad
+  Mail: \href{mailto:maxmustermann6@mail.com}{maxmustermann6@mail.com}\par
+  LinkedIn: \href{https://linkedin.com/in/my-link}{linkedin.com/in/my-link} \par
+  GitHub: \href{https://github.com/my-link}{github.com/my-link}
+}
+
+% --------- Beruflicher Werdegang ----------
+{\small
+\setlist[itemize]{itemsep=1pt, topsep=2pt, leftmargin=1.1em}
+
+\sectiontitle{Beruflicher Werdegang}
+
+\cventry{Seit 06/2023}{WHF, Uni}{%
+\begin{itemize}
+  \item Planung von Teamsitzungen
+  \item Planung und Durchführung von Testläufen
+\end{itemize}} % end cventry
+
+\cventry{08/2021 -- 10/2022}{Werkstudent, Unternehmen, Stadt}{%
+\textit{Bereich XY}
+\begin{itemize}
+  \item Unterstützung des Testmanagements
+  \item User-Rechteverwaltung unter SAP IdM
+\end{itemize}} % end cventry
+} % end small
+
+
+% --------- Akademischer Werdegang ----------
+{\small
+\setlist[itemize]{itemsep=1pt, topsep=2pt, leftmargin=1.1em}
+
+\sectiontitle{Akademischer Werdegang}
+
+\cventry{01/2024 -- 06/2024}{ERASMUS, Uni XY, Stadt XY}{}
+
+\cventry{Seit 10/2022}{M.Sc. Studiengang, Uni}{%
+\begin{itemize}
+  \item Schwerpunkte: 
+  \item Masterarbeit: 
+  \item Note:
+\end{itemize}} % end cventry
+
+\cventry{10/2019 -- 12/2022}{B.Sc. Studiengang, Uni}{%
+\begin{itemize}
+  \item Schwerpunkt: 
+  \item Bachelorarbeit:
+  \item Gesamtnote: 
+\end{itemize} } % end cventry
+} % end small
+
+% --------- Sonstiges ----------
+{\small
+\setlist[itemize]{itemsep=1pt, topsep=2pt, leftmargin=1.1em}
+
+\sectiontitle{Sonstiges}
+
+\cventry{06/2021 -- 12/2022}{Studienbeirat der Fakultät}{%
+} % end cventry
+
+} % end small
+
+
+
+\end{paracol}
+\end{document}
+
+
