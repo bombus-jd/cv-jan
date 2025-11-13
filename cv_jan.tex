@@ -12,6 +12,7 @@
 \usepackage{enumitem}
 \usepackage{tikz}
 \usepackage{eso-pic}
+\usepackage{adjustbox} % to crop pic
 \usepackage{tabularx}
 \usepackage{fontawesome5}
 \providecommand{\faCircle}{\large\textbullet} % fallback if FA5 fails
@@ -88,7 +89,10 @@
 
 % Photo (stays inside the column)
 \begin{minipage}[t][\photoH][t]{\linewidth}
-  \includegraphics[height=\photoH,width=\linewidth,keepaspectratio]{cv_test.jpeg}
+% left bottom right top
+  \adjustbox{clip, trim={0.6cm 1.6cm 0.3cm 0.3cm, height=\photoH,
+    keepaspectratio}}{\includegraphics[width=\linewidth]{cv-pic.jpeg}}
+% \includegraphics[height=\photoH, width=\linewidth, keepaspectratio, trim={1cm 1cm 0 0}, clip]{cv-pic.jpeg}
 \end{minipage}
 
 \vspace{\stretch{1}}
@@ -96,8 +100,8 @@
 \sidehead{\underline{EDV-Kenntnisse}}
 \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}l >{\raggedright\arraybackslash}X@{}}
-  \skillrow{Python}{3}{2}
-  \skillrow{R}{4}{1}
+  \skillrow{Python}{2}{3}
+  \skillrow{R}{3}{2}
   \skillrow{Git}{2}{3}
   \skillrow{Excel}{3}{2}
 \end{tabularx}
@@ -134,11 +138,13 @@
 \parbox[b][\photoH][t]{\linewidth}{%
   {\LARGE \textbf{Jan Dietz}}\par \vspace{5mm}
   Schloßstr. 263, 45359 Essen \\
-  Mobil: +49 0157 88614038 \quad
+  Mobil: +49 157 88614038 \quad
   Mail: \href{mailto:dietzjan6@gmail.com}{dietzjan6@gmail.com}\par
   LinkedIn: \href{https://linkedin.com/in/jan-dietz-19051b338}{linkedin.com/in/jan-dietz-19051b338} \par
   %GitHub: \href{https://github.com/bombus-jd}{github.com/bombus-jd}
 }
+
+
 
 % --------- Beruflicher Werdegang ----------
 {\small
