@@ -71,8 +71,9 @@
 % Skills with dots only:
 \newcommand{\skillrow}[3]{% name, full, empty
   \textbf{#1} & \pictofraction{\faCircle}{cvgreen}{#2}{black!30}{#3}{\tiny} \\}
-% Languages with level + dots OR comment ("Muttersprache"):
+% Languages with level + dots OR comment
 \newcommand{\langrow}[2]{\textbf{#1} & #2\\}
+
 % --- Keep header aligned with photo
 \newlength{\photoH}
 \setlength{\photoH}{35mm}
@@ -92,12 +93,11 @@
 % left bottom right top
   \adjustbox{clip, trim={1cm 2.5cm 0.3cm 0.3cm}, height=\photoH,
     keepaspectratio}{\includegraphics[width=\linewidth]{cv-pic.jpeg}}
-% \includegraphics[height=\photoH, width=\linewidth, keepaspectratio, trim={1cm 1cm 0 0}, clip]{cv-pic.jpeg}
 \end{minipage}
 
 \vspace{\stretch{1}}
 
-\sidehead{\underline{EDV-Kenntnisse}}
+\sidehead{\underline{IT Skills}}
 \setlength{\tabcolsep}{4pt}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}l >{\raggedright\arraybackslash}X@{}}
   \skillrow{Python}{2}{3}
@@ -108,25 +108,24 @@
 
 \vspace{\stretch{1}}
 
-\sidehead{\underline{Sprachen}}
+\sidehead{\underline{Languages}}
 \begin{tabularx}{\linewidth}{@{}>{\bfseries}l >{\centering\arraybackslash}p{12mm}@{}}
-  \langrow{Deutsch}{C2}
-  \langrow{Englisch}{C1}
-  \langrow{Spanisch}{B1}
-  \langrow{Französisch}{A2}
+  \langrow{German}{C2}
+  \langrow{English}{C1}
+  \langrow{Spanish}{B1}
+  \langrow{French}{A2}
 \end{tabularx}
 
 \vspace{\stretch{1}}
 
-\sidehead{\underline{Interessen}}
+\sidehead{\underline{Interests}}
 \small
 \begin{itemize}
-  \item Fußball und allgemeiner Sport
-  \item Brettspiele
-  \item Training mit meinem Maltipoo
-  \item Serien, Lieblingsserie: „Psych“
+  \item Football and general sports
+  \item Board games
+  \item Training with my Maltipoo
+  \item Series, favourite series: “Psych”
 \end{itemize}
-
 
 \vfill
 
@@ -138,94 +137,83 @@
 \parbox[b][\photoH][t]{\linewidth}{%
   {\LARGE \textbf{Jan Dietz}}\par \vspace{5mm}
   Schloßstr. 263, 45359 Essen \\
-  Mobil: +49 157 88614038 \quad
+  Mobile: +49 157 88614038 \quad
   Mail: \href{mailto:dietzjan6@gmail.com}{dietzjan6@gmail.com}\par
   LinkedIn: \href{https://linkedin.com/in/jan-dietz-19051b338}{linkedin.com/in/jan-dietz-19051b338} \par
-  %GitHub: \href{https://github.com/bombus-jd}{github.com/bombus-jd}
 }
 
+% --------- Professional Experience ----------
+{\small
+\setlist[itemize]{itemsep=0.7pt, topsep=2pt, leftmargin=1.1em}
 
+\sectiontitle{Professional Experience}
 
-% --------- Beruflicher Werdegang ----------
+\cventry{Since 06/2023}{Student Assistant, UDE Chair of Econometrics}{%
+\begin{itemize}
+  \item Conception and implementation of exercises and exam tasks in JACK3 (web-based autograder), including R–GReQL grammar
+  \item Planning and execution of test runs as well as error analysis and correction
+\end{itemize}}
+
+\cventry{Since 10/2023}{Student Assistant, UDE Department of Mathematics}{%
+\begin{itemize}
+  \item Teaching assistant and examiner in the modules Stochastics, Optimization I, and Analysis I \& II
+\end{itemize}}
+
+\cventry{08/2021 -- 10/2022}{Working Student, HSBC Germany, Düsseldorf}{%
+\textit{Transformation / Process Consulting Division}
+\begin{itemize}
+  \item Support of test management in HP ALM
+  \item User rights administration in SAP IdM
+  \item Maintenance of Confluence pages
+\end{itemize}}
+}
+
+% --------- Academic Background ----------
 {\small
 \setlist[itemize]{itemsep=1pt, topsep=2pt, leftmargin=1.1em}
 
-\sectiontitle{Beruflicher Werdegang}
-
-\cventry{Seit 06/2023}{WHF, UDE Lehrstuhl Ökonometrie}{%
-\begin{itemize}
-  \item Konzeption und Implementierung von Übungs- und Prüfungsaufgaben in JACK3 (webbasierter Autograder) inkl. R-GReQL-Grammatik
-  \item Planung und Durchführung von Testläufen sowie Fehleranalyse und -behebung
-\end{itemize}}
-
-\cventry{Seit 10/2023}{WHF, UDE Lehrstuhl Mathematik}{%
-\begin{itemize}
-  \item Übungsleiter und Korrektor in den Modulen Stochastik, Optimierung I sowie Analysis I \& II
-\end{itemize}}
-
-\cventry{08/2021 -- 10/2022}{Werkstudent, HSBC Deutschland, Düsseldorf}{%
-\textit{Bereich Transformation / Process Consulting}
-\begin{itemize}
-  \item Unterstützung des Testmanagements in HP ALM
-  \item User-Rechteverwaltung unter SAP IdM
-  \item Pflege von Confluence-Seiten
-\end{itemize}}
-} % end small
-
-
-% --------- Akademischer Werdegang ----------
-{\small
-\setlist[itemize]{itemsep=1pt, topsep=2pt, leftmargin=1.1em}
-
-\sectiontitle{Akademischer Werdegang}
+\sectiontitle{Academic Background}
 
 \cventry{01/2024 -- 06/2024}{ERASMUS, Sorbonne Université, Paris}{}
 
-\cventry{Seit 10/2023}{M.Sc. Mathematik, Universität Duisburg-Essen}{%
+\cventry{Since 10/2023}{M.Sc. Mathematics, University of Duisburg-Essen}{%
 \begin{itemize}
-  \item Schwerpunkte: Stochastik / Optimierung
-  \item Masterarbeit: Mathematical modeling of data on cancer cell survival after irradiation
-  \item Aktuelle Durchschnittsnote: 1,3
+  \item Focus areas: Stochastics / Optimization
+  \item Master’s thesis: Mathematical modeling of data on cancer cell survival after irradiation
+  \item Current GPA: 1.3
 \end{itemize}}
 
-\cventry{04/2021 -- 09/2023}{B.Sc. Mathematik (2. Studium), UDE}{%
+\cventry{04/2021 -- 09/2023}{B.Sc. Mathematics (2nd degree), UDE}{%
 \begin{itemize}
-  \item Schwerpunkt: Stochastik \quad|\quad Anwendungsfach: Wirtschaft
-  \item Leistungen: 100 ECTS (Note 1,9)
+  \item Focus area: Stochastics \quad|\quad Applied subject: Economics
+  \item Credits earned: 100 ECTS (Grade 1.9)
 \end{itemize}}
 
-\cventry{10/2019 -- 12/2022}{B.Sc. Physik, UDE}{%
+\cventry{10/2019 -- 12/2022}{B.Sc. Physics, UDE}{%
 \begin{itemize}
-  \item Schwerpunkt: Komplexe Systeme
-  \item Bachelorarbeit: Untersuchung medizinischer Daten mit Korrelationsmethoden aus der Physik (1,0)
-  \item Gesamtnote: 1,7
+  \item Focus area: Complex Systems
+  \item Bachelor’s thesis: Analysis of medical data using correlation methods from physics (1.0)
+  \item Final grade: 1.7
 \end{itemize}}
-} % end small
+}
 
-% --------- Sonstiges ----------
+% --------- Other Activities ----------
 {\small
 \setlist[itemize]{itemsep=1pt, topsep=2pt, leftmargin=1.1em}
 
-\sectiontitle{Sonstiges}
+\sectiontitle{Other Activities}
 
-\cventry{06/2021 -- 12/2022}{Studienbeirat der Fakultät Physik}{%
-}
+\cventry{06/2021 -- 12/2022}{Student Council Member, Faculty of Physics}{}
 
 \cventry{06/2021 -- 08/2021}{Trainee, Act e.V., Essen}{%
-\textit{Studentische Unternehmensberatung der UDE}
+\textit{Student Consultancy of the UDE}
 }
 
-\cventry{-}{Teilnahme an verschiedenen Workshops, z.B. zu Medienkompetenz und Kommunikation}{%
+\cventry{-}{Participation in various workshops, e.g. on media literacy and communication}{}
+
+\cventry{10/2024 -- 03/2025}{Participation in the Buddy Program}{}
+
 }
-
-\cventry{10/2024 -- 03/2025}{Teilnahme am Buddy-Programm}{%
-}
-
-} % end small
-
-
 
 \end{paracol}
 \end{document}
-
-
